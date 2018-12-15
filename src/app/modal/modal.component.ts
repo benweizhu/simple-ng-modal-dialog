@@ -33,16 +33,15 @@ export class ModalComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-
+    this.modalService.remove(this.id);
+    this.element.remove();
   }
 
-  // open modal
   open(): void {
     this.element.style.display = 'block';
     document.body.classList.add('modal-open');
   }
 
-  // close modal
   close(): void {
     this.element.style.display = 'none';
     document.body.classList.remove('modal-open');
