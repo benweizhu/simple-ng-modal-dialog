@@ -29,4 +29,10 @@ export class ModalComponent implements OnInit, OnDestroy {
 
   }
 
+  // open modal
+  open(): void {
+    this.element.style.display = 'block';
+    document.body.classList.add('modal-open');
+  }
+
 }
