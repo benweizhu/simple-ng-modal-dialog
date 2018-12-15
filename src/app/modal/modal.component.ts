@@ -17,12 +17,19 @@ export class ModalComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
+    let modal = this;
     if (!this.id) {
       console.error('modal must have an id');
       return;
     }
     document.body.appendChild(this.element);
     this.modalService.add(this);
+
+    this.element.addEventListener('click', function (e: any) {
+      if (e.target.className === 'modal') {
+        modal.close();
+      }
+    });
   }
 
   ngOnDestroy(): void {
@@ -33,6 +40,12 @@ export class ModalComponent implements OnInit, OnDestroy {
   open(): void {
     this.element.style.display = 'block';
     document.body.classList.add('modal-open');
+  }
+
+  // close modal
+  close(): void {
+    this.element.style.display = 'none';
+    document.body.classList.remove('modal-open');
   }
 
 }
